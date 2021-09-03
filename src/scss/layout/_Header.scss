@@ -1,0 +1,40 @@
+.header {
+     background-color: $Cverde;
+
+     h1 {
+          color: $Cblanco;
+          margin-bottom: 1rem;
+          @include tablet {
+               margin-bottom: 0;
+          }
+     }
+     &.fijo{
+          position: fixed;
+          width: 100%;
+          box-shadow: 0 .3rem .4rem rgb(68, 68, 68);
+     }
+}
+
+.contenido-header {
+     padding: $Separacion/2 0;
+     @include tablet {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+     }
+
+}
+
+.navegacion-principal {
+     display: flex;
+     //gap: 2rem;
+     justify-content: center;
+     a {
+          color: $Cblanco;
+          font-size: 2rem;
+          margin: 0 1rem;
+          &:hover{
+               color: $Camarillo;
+          }
+     }
+}

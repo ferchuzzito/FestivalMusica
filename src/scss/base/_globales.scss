@@ -1,0 +1,43 @@
+/**Globales**/
+html {
+     font-size: 62.5%;
+     box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+     box-sizing: inherit;
+}
+
+body {
+     font-family: $FuentePrincipal;
+     font-size: 1.6rem;
+    // &.fijar-body{
+    //      overflow: hidden;
+     //}
+}
+
+p {
+     font-size: 2rem;
+     color: $Cnegro;
+}
+
+.contenedor {
+     max-width: 120rem;
+     width: 95%;
+     margin: 0 auto;
+}
+a{
+     text-decoration: none;
+}
+img{
+     max-width: 100%;
+}
+@for $i from 1 through 3 {
+     h#{$i} {
+          font-size: nth($Heading-size, $i);
+          font-weight: nth($Heading-weight, $i);
+          margin: 0;
+     }
+}

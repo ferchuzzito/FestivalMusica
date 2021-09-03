@@ -1,0 +1,44 @@
+@mixin ScreenSize($BreakPoint) {
+    @media (min-width: $BreakPoint) {
+        @content;
+    }
+}
+
+@mixin telefono {
+    @media (min-width: $telefono) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin Grid($columnas, $espaciado) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: $espaciado;
+}
+
+@mixin Flex($display, $justify, $align, $direction: row) {
+    display: $display;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.bg-verde {
+    background-color: $Cverde;
+}
+
+.bg-amarillo {
+    background-color: $Camarillo;
+}
