@@ -40,7 +40,7 @@ function css(done) {
       }))
       // autoprefixer
       .pipe(postcss([autoprefixer({
-         overrideBrowserslist: ['last 12 version']
+         overrideBrowserslist: ['> .5%, last 10 versions']
       })]))
       .pipe(sourcemaps.write('./'))
       // css output directory
@@ -55,7 +55,7 @@ function purgecss(done) {
          //   rejected: true 
       }))
       .pipe(gulp.dest('dist/'));
-      done();
+   done();
 };
 
 function images(done) {
@@ -82,8 +82,9 @@ function images(done) {
          })
       ]))
       .pipe(gulp.dest(paths.imageDest));
-      done();
+   done();
 };
+
 function Avif(done) {
    const opciones = {
       quality: 50
@@ -96,7 +97,7 @@ function Avif(done) {
 
 function Webp(done) {
    src(paths.imageFiles)
-      .pipe(imagemin([
+      .pipe(cache(imagemin([
          imagemin.gifsicle({
             interlaced: true
          }),
@@ -116,10 +117,10 @@ function Webp(done) {
                }
             ]
          })
-      ]))
+      ])))
       .pipe(webp())
       .pipe(gulp.dest(paths.imageDest));
-      done();
+   done();
 };
 
 function js(done) {
@@ -128,14 +129,8 @@ function js(done) {
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.jsBundle));
-      done();
+   done();
 };
-
-gulp.task('watch', function () {
-   gulp.watch(paths.sassFiles, gulp.series('sass'));
-   // gulp.watch(imageFiles, gulp.series('images'));
-   // gulp.watch(paths.jsFiles, gulp.series('scripts'));
-});
 
 function dev(done) {
    watch(paths.sassFiles, css);
