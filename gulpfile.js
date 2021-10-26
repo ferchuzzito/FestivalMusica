@@ -2,43 +2,100 @@ const gulp = require('gulp');
 
 const paths = {
    sassFiles: './src/scss/**/*.scss',
-   cssDest: './src/css',
+   cssDest: './build/css',
    imageFiles: './src/assets/img/**/*',
-   imageDest: './src/assets/images',
+   imageDest: './build/assets/img',
    jsFiles: './src/js/**/*.js',
-   jsBundle: './src/js',
+   jsBundle: './build/js',
 };
-const sourcemaps = require('gulp-sourcemaps')
+
+// CSS
 const sass = require('gulp-sass')(require('sass'));
+const plumber = require('gulp-plumber');
+//const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
+const purgecss = require('gulp-purgecss');
+
+// Imagenes
+const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
-const autoprefixer = require('gulp-autoprefixer');
-sass.compiler = require('node-sass');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
+const avif = require('gulp-avif');
 
-gulp.task('sass', function () {
+// Javascript
+const terser = require('gulp-terser-js');
+
+// Tareas
+function css(done) {
    // sass directory
-   return gulp.src(paths.sassFiles)
+   src(paths.sassFiles)
       // sourcemaps
       .pipe(sourcemaps.init())
+      .pipe(plumber())
       // outputstyle (nested, compact, expanded, compressed)
       .pipe(sass({
          outputStyle: 'compressed'
-      }).on('error', sass.logError))
-      // autoprefixer
-      .pipe(autoprefixer({
-         overrideBrowserslist: ['last 15 versions'],
-         cascade: false
       }))
-      // sourcemaps output directory
-      .pipe(sourcemaps.write(('./')))
+      // autoprefixer
+      .pipe(postcss([autoprefixer({
+         overrideBrowserslist: ['last 12 version']
+      })]))
+      .pipe(sourcemaps.write('./'))
       // css output directory
       .pipe(gulp.dest(paths.cssDest));
-});
+   done();
+};
 
-gulp.task('images', function () {
-   return gulp.src(paths.imageFiles)
+function purgecss(done) {
+   src('dist/**/*.css')
+      .pipe(purgecss({
+         content: ['src/**/*.html'],
+         //   rejected: true 
+      }))
+      .pipe(gulp.dest('dist/'));
+      done();
+};
+
+function images(done) {
+   src(paths.imageFiles)
+      .pipe(imagemin([
+         imagemin.gifsicle({
+            interlaced: true
+         }),
+         imagemin.mozjpeg({
+            quality: 75,
+            progressive: true
+         }),
+         imagemin.optipng({
+            optimizationLevel: 5
+         }),
+         imagemin.svgo({
+            plugins: [{
+                  removeViewBox: true
+               },
+               {
+                  cleanupIDs: false
+               }
+            ]
+         })
+      ]))
+      .pipe(gulp.dest(paths.imageDest));
+      done();
+};
+function Avif(done) {
+   const opciones = {
+      quality: 50
+   };
+   src('src/img/**/*.{png,jpg}')
+      .pipe(avif(opciones))
+      .pipe(dest('build/img'))
+   done();
+};
+
+function Webp(done) {
+   src(paths.imageFiles)
       .pipe(imagemin([
          imagemin.gifsicle({
             interlaced: true
@@ -61,20 +118,35 @@ gulp.task('images', function () {
          })
       ]))
       .pipe(webp())
-      .pipe(gulp.dest(paths.imageDest))
-});
+      .pipe(gulp.dest(paths.imageDest));
+      done();
+};
 
-gulp.task('scripts', function () {
-   return gulp.src(paths.jsFiles)
+function js(done) {
+   src(paths.jsFiles)
       .pipe(sourcemaps.init())
-      .pipe(concat('FestivalMusica.js'))
-      .pipe(uglify())
+      .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(paths.jsBundle));
-});
+      done();
+};
 
 gulp.task('watch', function () {
    gulp.watch(paths.sassFiles, gulp.series('sass'));
    // gulp.watch(imageFiles, gulp.series('images'));
    // gulp.watch(paths.jsFiles, gulp.series('scripts'));
 });
+
+function dev(done) {
+   watch(paths.sassFiles, css);
+   watch(paths.jsFiles, javascript);
+   done();
+}
+
+exports.css = css;
+exports.purgecss = purgecss;
+exports.js = js;
+exports.images = images;
+exports.Webp = Webp;
+exports.Avif = Avif;
+exports.dev = parallel(images, Webp, Avif, js, dev);
