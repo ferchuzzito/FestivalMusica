@@ -1,3 +1,4 @@
+@use "base/variables" as v;
 .video {
      position: relative;
      max-height: 50rem;
@@ -24,7 +25,7 @@
           display: flex;
           height: 100%;
           align-items: center;
-          color: $Cblanco;
+          color: v.$Cblanco;
           z-index: 1;
           h2{
                display: flex;
@@ -33,10 +34,10 @@
                font-size: 7rem;
           }
           span{
-               background-color: $Crosa;
+               background-color: v.$Crosa;
                font-size: 2rem;
                padding: 1rem 2rem;
-               font-weight: $Fregular;
+               font-weight: v.$Fregular;
           }
      }
 }

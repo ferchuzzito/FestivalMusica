@@ -1,18 +1,22 @@
+@use "base/variables" as v;
+@use "sass:math";
+@use 'components/util' as u;
+
 .galeria{
-     padding: $Separacion 0;
+     padding: v.$Separacion 0;
      h3{
           text-align: center;
      }
      &-imagenes{
           padding: 0;
           list-style-type: none;
-          margin-top: $Separacion;
-          @include Grid (2, $Separacion);
-          @include tablet {
-               @include Grid (4, $Separacion/2)  
+          margin-top: v.$Separacion;
+          @include u.Grid (2, v.$Separacion);
+          @include u.tablet {
+               @include u.Grid (4, math.div(v.$Separacion,2))  
           }
-          @include desktop {
-               @include Grid (6, $Separacion/2)  
+          @include u.desktop {
+               @include u.Grid (6, math.div(v.$Separacion,2))  
           }
      }
 }
@@ -25,7 +29,7 @@
      display: grid;
      place-items: center;
      img{
-          @include desktop{
+          @include u.desktop{
               width: min(50%, 90%);
           }
       }
@@ -34,10 +38,10 @@
  .btn-cerrar {
      width: 5rem;
      height: 5rem;
-     background-color: $Cblanco;
+     background-color: v.$Cblanco;
      display: grid;
      place-items: center;
-     font-weight: $Fblack;
+     font-weight: v.$Fblack;
      font-size: 3rem;
      border-radius: 50%;
  

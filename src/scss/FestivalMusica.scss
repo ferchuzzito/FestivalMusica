@@ -1,14 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap');
-@import 'base/normalize';
-@import 'base/variables';
-@import 'base/globales';
+@use 'base';
 
-@import 'components/util';
+@use 'components';
 
-@import 'layout/Header';
-@import 'layout/Video';
-@import 'layout/Festival';
-@import 'layout/Lineup';
-@import 'layout/Galeria';
-@import 'layout/Boletos';
-@import 'layout/Footer';
+@use 'layout';

@@ -92,7 +92,7 @@ function Avif(done) {
    };
    src('src/assets/img/**/*.{png,jpg}')
       .pipe(avif(opciones))
-      .pipe(dest(paths.imageDest))
+      .pipe(gulp.dest(paths.imageDest))
    done();
 };
 
