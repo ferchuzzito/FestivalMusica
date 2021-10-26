@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const {src, dest, watch, parallel}  = require('gulp')
 
 const paths = {
    sassFiles: './src/scss/**/*.scss',
@@ -48,10 +49,10 @@ function css(done) {
    done();
 };
 
-function purgecss(done) {
+function Cleancss(done) {
    src('dist/**/*.css')
       .pipe(purgecss({
-         content: ['src/**/*.html'],
+         content: ['./*.html'],
          //   rejected: true 
       }))
       .pipe(gulp.dest('dist/'));
@@ -89,9 +90,9 @@ function Avif(done) {
    const opciones = {
       quality: 50
    };
-   src('src/img/**/*.{png,jpg}')
+   src('src/assets/img/**/*.{png,jpg}')
       .pipe(avif(opciones))
-      .pipe(dest('build/img'))
+      .pipe(dest(paths.imageDest))
    done();
 };
 
@@ -134,12 +135,12 @@ function js(done) {
 
 function dev(done) {
    watch(paths.sassFiles, css);
-   watch(paths.jsFiles, javascript);
+   watch(paths.jsFiles, js);
    done();
 }
 
 exports.css = css;
-exports.purgecss = purgecss;
+exports.cleanCSS = Cleancss;
 exports.js = js;
 exports.images = images;
 exports.Webp = Webp;
