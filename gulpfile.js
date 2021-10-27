@@ -61,16 +61,16 @@ function Cleancss(done) {
 
 function images(done) {
    src(paths.imageFiles)
-      .pipe(imagemin([
+      .pipe(cache(imagemin([
          imagemin.gifsicle({
             interlaced: true
          }),
          imagemin.mozjpeg({
-            quality: 75,
+            quality: 50,
             progressive: true
          }),
          imagemin.optipng({
-            optimizationLevel: 5
+            optimizationLevel: 3
          }),
          imagemin.svgo({
             plugins: [{
@@ -81,7 +81,7 @@ function images(done) {
                }
             ]
          })
-      ]))
+      ])))
       .pipe(gulp.dest(paths.imageDest));
    done();
 };
@@ -103,11 +103,11 @@ function Webp(done) {
             interlaced: true
          }),
          imagemin.mozjpeg({
-            quality: 75,
+            quality: 50,
             progressive: true
          }),
          imagemin.optipng({
-            optimizationLevel: 5
+            optimizationLevel: 3
          }),
          imagemin.svgo({
             plugins: [{

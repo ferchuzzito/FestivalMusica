@@ -5,7 +5,8 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap"
+          rel="stylesheet">
      <link rel="stylesheet" href="build/css/FestivalMusica.css">
 
      <title>Rock y EDM Festival</title>
@@ -41,7 +42,11 @@
      </div>
      <div class="contenedor sobre-festival">
           <div class="imagen">
-               <img src="build/assets/img/imagen_vocalista.jpg" alt="Imagen Vocalista">
+               <picture>
+                    <source srcset="build/assets/img/imagen_vocalista.avif" type="image/avif">
+                    <source srcset="build/assets/img/imagen_vocalista.webp" type="image/webp">
+                    <img src="build/assets/img/imagen_vocalista.jpg" alt="Imagen Vocalista">
+               </picture>
           </div>
           <div class="contenido-festival">
                <h2>Rock & EDM Festival</h2>
@@ -196,7 +201,7 @@
      <footer class="footer">
           <p>Rock & EDM Festival. Todos Los Derechos Reservados</p>
      </footer>
-     <script src="build/js/FestivalMusica.js"></script>
+     <script src="build/js/app.js"></script>
 </body>
 
 </html>
