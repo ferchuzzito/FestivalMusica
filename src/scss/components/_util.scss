@@ -1,23 +1,24 @@
-@mixin ScreenSize($BreakPoint) {
-    @media (min-width: $BreakPoint) {
-        @content;
-    }
-}
+@use 'base/variables' as v;
+// @mixin ScreenSize($BreakPoint) {
+//     @media (min-width: $BreakPoint) {
+//         @content;
+//     }
+// }
 
 @mixin telefono {
-    @media (min-width: $telefono) {
+    @media (min-width: v.$telefono) {
         @content;
     }
 }
 
 @mixin tablet {
-    @media (min-width: $tablet) {
+    @media (min-width: v.$tablet) {
         @content;
     }
 }
 
 @mixin desktop {
-    @media (min-width: $desktop) {
+    @media (min-width: v.$desktop) {
         @content;
     }
 }
@@ -36,9 +37,9 @@
 }
 
 .bg-verde {
-    background-color: $Cverde;
+    background-color: v.$Cverde;
 }
 
 .bg-amarillo {
-    background-color: $Camarillo;
+    background-color: v.$Camarillo;
 }

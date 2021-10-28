@@ -1,3 +1,5 @@
+@use 'variables'as v;
+
 /**Globales**/
 html {
      font-size: 62.5%;
@@ -11,16 +13,21 @@ html {
 }
 
 body {
-     font-family: $FuentePrincipal;
+     font-family: v.$FuentePrincipal;
      font-size: 1.6rem;
-    // &.fijar-body{
-    //      overflow: hidden;
-     //}
+
+     &.fijar-body {
+          overflow: hidden;
+     }
+
+     &.body-scroll {
+          padding-top: 8.6rem;
+     }
 }
 
 p {
      font-size: 2rem;
-     color: $Cnegro;
+     color: v.$Cnegro;
 }
 
 .contenedor {
@@ -28,16 +35,19 @@ p {
      width: 95%;
      margin: 0 auto;
 }
-a{
+
+a {
      text-decoration: none;
 }
-img{
+
+img {
      max-width: 100%;
 }
+
 @for $i from 1 through 3 {
      h#{$i} {
-          font-size: nth($Heading-size, $i);
-          font-weight: nth($Heading-weight, $i);
-          margin: 0;
+          font-size: nth(v.$Heading-size, $i);
+          font-weight: nth(v.$Heading-weight, $i);
+          margin: 0 0 5rem 0;
      }
 }

@@ -1,10 +1,13 @@
+@use 'base/variables' as v;
+@use 'components/util' as u;
+@use "sass:math";
 .header {
-     background-color: $Cverde;
+     background-color: v.$Cverde;
 
      h1 {
-          color: $Cblanco;
+          color: v.$Cblanco;
           margin-bottom: 1rem;
-          @include tablet {
+          @include u.tablet {
                margin-bottom: 0;
           }
      }
@@ -16,8 +19,8 @@
 }
 
 .contenido-header {
-     padding: $Separacion/2 0;
-     @include tablet {
+     padding: math.div(v.$Separacion,2) 0;
+     @include u.tablet {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -30,11 +33,11 @@
      //gap: 2rem;
      justify-content: center;
      a {
-          color: $Cblanco;
+          color: v.$Cblanco;
           font-size: 2rem;
           margin: 0 1rem;
           &:hover{
-               color: $Camarillo;
+               color: v.$Camarillo;
           }
      }
 }

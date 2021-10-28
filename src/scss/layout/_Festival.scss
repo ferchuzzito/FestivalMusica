@@ -1,8 +1,10 @@
+@use "base/variables" as v;
+@use 'components/util' as u;
 .sobre-festival {
-     padding: $Separacion 0;
+     padding: v.$Separacion 0;
 
-     @include tablet {
-          @include Grid(2, $Separacion);
+     @include u.tablet {
+          @include u.Grid(2, v.$Separacion);
      }
 }
 
@@ -15,8 +17,8 @@
      }
 
      .fecha {
-          color: $Crosa;
-          font-weight: $Fbold;
+          color: v.$Crosa;
+          font-weight: v.$Fbold;
      }
 
      .texto {

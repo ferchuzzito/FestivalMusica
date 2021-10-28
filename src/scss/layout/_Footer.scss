@@ -1,10 +1,12 @@
+@use "base/variables" as v;
+@use "sass:math";
 .footer {
-     background-color: $Crosa;
-     padding: $Separacion / 4;
+     background-color: v.$Crosa;
+     padding: math.div(v.$Separacion, 4);
      text-align: center;
  
      p {
-         color: $Cblanco;
+         color: v.$Cblanco;
          margin: 0;
      }
  }
