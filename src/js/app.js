@@ -13,11 +13,19 @@ function crearGaleria() {
 
     for (let i = 1; i <= 12; i++) {
         const imagen = document.createElement('picture');
-        imagen.innerHTML = `
-        <source srcset="build/assets/img/thumb/${i}.avif" type="image/avif">
-        <source srcset="build/assets/img/thumb/${i}.webp" type="image/webp">
-        <img src="build/assets/img/thumb/${i}.jpg" alt="Imagen Galeria">
-        `;
+        const sourceAvif = document.createElement('source');
+        sourceAvif.srcset = `build/assets/img/thumb/${i}.avif`;
+        sourceAvif.type = 'image/avif';
+        const sourceWebp = document.createElement('source');
+        sourceWebp.srcset = `build/assets/img/thumb/${i}.webp`;
+        sourceWebp.type = 'image/webp';
+        const sourceimg = document.createElement('img');
+        sourceimg.src = 'build/assets/img/thumb/${i}.img';
+        sourceimg.alt = 'Imagen Galeria';
+        imagen.appendChild(sourceAvif);
+        imagen.appendChild(sourceWebp);
+        imagen.appendChild(sourceimg);
+
         imagen.dataset.imagenId = i;
         // Añadir la función de mostrarImagen
         imagen.onclick = function () {
@@ -30,11 +38,18 @@ function crearGaleria() {
 function mostrarImagen(id) {
     // Generar la imagen
     const imagen = document.createElement('picture');
-    imagen.innerHTML = `
-    <source srcset="build/assets/img/grande/${id}.avif" type="image/avif">
-    <source srcset="build/assets/img/grande/${id}.webp" type="image/webp">
-    <img src="build/assets/img/grande/${id}.jpg" alt="Imagen Galeria">
-    `;
+    const sourceAvif = document.createElement('source');
+    sourceAvif.srcset = `build/assets/img/grande/${id}.avif`;
+    sourceAvif.type = 'image/avif';
+    const sourceWebp = document.createElement('source');
+    sourceWebp.srcset = `build/assets/img/grande/${id}.webp`;
+    sourceWebp.type = 'image/webp';
+    const sourceimg = document.createElement('img');
+    sourceimg.src = 'build/assets/img/grande/${id}.img';
+    sourceimg.alt = 'Imagen Galeria';
+    imagen.appendChild(sourceAvif);
+    imagen.appendChild(sourceWebp);
+    imagen.appendChild(sourceimg);
 
     const overlay = document.createElement('DIV');
     overlay.appendChild(imagen);
