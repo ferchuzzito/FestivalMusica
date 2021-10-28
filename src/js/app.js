@@ -20,7 +20,7 @@ function crearGaleria() {
         sourceWebp.srcset = `build/assets/img/thumb/${i}.webp`;
         sourceWebp.type = 'image/webp';
         const sourceimg = document.createElement('img');
-        sourceimg.src = 'build/assets/img/thumb/${i}.img';
+        sourceimg.src = `build/assets/img/thumb/${i}.jpg`;
         sourceimg.alt = 'Imagen Galeria';
         imagen.appendChild(sourceAvif);
         imagen.appendChild(sourceWebp);
@@ -45,7 +45,7 @@ function mostrarImagen(id) {
     sourceWebp.srcset = `build/assets/img/grande/${id}.webp`;
     sourceWebp.type = 'image/webp';
     const sourceimg = document.createElement('img');
-    sourceimg.src = 'build/assets/img/grande/${id}.img';
+    sourceimg.src = `build/assets/img/grande/${id}.jpg`;
     sourceimg.alt = 'Imagen Galeria';
     imagen.appendChild(sourceAvif);
     imagen.appendChild(sourceWebp);
