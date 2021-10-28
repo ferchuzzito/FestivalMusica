@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const {src, dest, watch, parallel}  = require('gulp')
+const {src, watch, parallel}  = require('gulp')
 
 const paths = {
    sassFiles: './src/scss/**/*.scss',
@@ -50,12 +50,12 @@ function css(done) {
 };
 
 function Cleancss(done) {
-   src('dist/**/*.css')
+   src('build/**/*.css')
       .pipe(purgecss({
          content: ['./*.html'],
-         //   rejected: true 
+         rejected: true 
       }))
-      .pipe(gulp.dest('dist/'));
+      .pipe(gulp.dest('build/css'));
    done();
 };
 
@@ -145,4 +145,4 @@ exports.js = js;
 exports.images = images;
 exports.Webp = Webp;
 exports.Avif = Avif;
-exports.dev = parallel(images, Webp, Avif, js, dev);
+exports.dev = parallel(images, Webp, Avif, dev);
