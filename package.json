@@ -1,10 +1,17 @@
 {
   "name": "festivalmusica",
   "version": "1.0.0",
-  "description": "Proyecto HTML, JS y scss",
-  "main": "index.js",
+  "description": "Proyecto HTML, JS y scss (con gulp)",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass --watch src/scss:build/css",
+    "dev": "gulp dev",
+    "build:css": "gulp css",
+    "build:cleanCSS": "gulp cleanCSS",
+    "build:js": "gulp js",
+    "build:images": "gulp images",
+    "build:webp": "gulp webp",
+    "build:avif": "gulp avif"
   },
   "keywords": [
     "HTML",
@@ -15,22 +22,20 @@
   "author": "Fernando Leon",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "autoprefixer": "^10.3.7",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-imagemin": "^7.1.0",
-    "gulp-sass": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-avif": "^1.0.1",
+    "autoprefixer": "^10.4.19",
+    "gulp": "^5.0.0",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-avif": "^1.1.1",
     "gulp-cache": "^1.1.3",
-    "gulp-webp": "^4.0.1",
+    "gulp-imagemin": "^9.1.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^9.0.1",
+    "gulp-postcss": "^10.0.0",
     "gulp-purge-sourcemaps": "^1.0.0",
-    "gulp-purgecss": "^4.0.3",
-    "sass": "^1.42.1"
-  },
-  "dependencies": {
-    "gulp-terser-js": "^5.2.2"
+    "gulp-purgecss": "^6.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "gulp-webp": "^5.0.0",
+    "sass": "^1.77.7"
   }
 }
