@@ -1,5 +1,5 @@
-const gulp = require('gulp');
-const {src, watch, parallel}  = require('gulp')
+import gulp from 'gulp';
+const { src, watch, parallel } = gulp;
 
 const paths = {
    sassFiles: './src/scss/**/*.scss',
@@ -11,22 +11,25 @@ const paths = {
 };
 
 // CSS
-const sass = require('gulp-sass')(require('sass'));
-const plumber = require('gulp-plumber');
-//const autoprefixer = require('gulp-autoprefixer');
-const autoprefixer = require('autoprefixer');
-const postcss = require('gulp-postcss');
-const sourcemaps = require('gulp-sourcemaps');
-const purgecss = require('gulp-purgecss');
+import sass from 'gulp-sass';
+import * as dartSass from 'sass'
+import plumber from 'gulp-plumber';
+import autoprefixer from 'autoprefixer';
+import postcss from 'gulp-postcss';
+import sourcemaps from 'gulp-sourcemaps';
+import purgecss from 'gulp-purgecss';
 
 // Imagenes
-const cache = require('gulp-cache');
-const imagemin = require('gulp-imagemin');
-const webp = require('gulp-webp');
-const avif = require('gulp-avif');
+import cache from 'gulp-cache';
+import imagemin from 'gulp-imagemin';
+import webp from 'gulp-webp';
+import avif from 'gulp-avif';
 
 // Javascript
-const terser = require('gulp-terser-js');
+import terser from 'gulp-terser';
+
+// Initialize gulp-sass with dart-sass
+const sassCompiler = sass(dartSass);
 
 // Tareas
 function css(done) {
@@ -36,9 +39,7 @@ function css(done) {
       .pipe(sourcemaps.init())
       .pipe(plumber())
       // outputstyle (nested, compact, expanded, compressed)
-      .pipe(sass({
-         outputStyle: 'compressed'
-      }))
+      .pipe(sassCompiler({ outputStyle: 'compressed' }))
       // autoprefixer
       .pipe(postcss([autoprefixer({
          overrideBrowserslist: ['> .5%, last 10 versions']
@@ -49,7 +50,7 @@ function css(done) {
    done();
 };
 
-function Cleancss(done) {
+function cleanCSS(done) {
    src('build/**/*.css')
       .pipe(purgecss({
          content: ['./*.html'],
@@ -86,7 +87,7 @@ function images(done) {
    done();
 };
 
-function Avif(done) {
+function avifImages(done) {
    const opciones = {
       quality: 50
    };
@@ -96,7 +97,7 @@ function Avif(done) {
    done();
 };
 
-function Webp(done) {
+function webpImages(done) {
    src(paths.imageFiles)
       .pipe(cache(imagemin([
          imagemin.gifsicle({
@@ -139,10 +140,5 @@ function dev(done) {
    done();
 }
 
-exports.css = css;
-exports.cleanCSS = Cleancss;
-exports.js = js;
-exports.images = images;
-exports.Webp = Webp;
-exports.Avif = Avif;
-exports.dev = parallel(images, Webp, Avif, dev);
+const build = parallel(images, webpImages, avifImages, dev);
+export { css, cleanCSS, js, images, webpImages as webp, avifImages as avif, build as dev };
