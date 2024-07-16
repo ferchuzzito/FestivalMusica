@@ -3,7 +3,6 @@
 @use "sass:math";
 .header {
      background-color: v.$Cverde;
-
      @include u.tablet {
           &.fijo{
                position: fixed;
