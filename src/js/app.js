@@ -1,115 +1,114 @@
-document.addEventListener('DOMContentLoaded', function () {
-    iniciarAPP();
+document.addEventListener("DOMContentLoaded", function () {
+    navegacionFija();
+    crearGaleria();
+    resaltarEnlace();
+    scrollNav();
 });
 
-function iniciarAPP() {
-    crearGaleria();
-    scrollNav();
-    navegacionFija();
+function navegacionFija() {
+    const header = document.querySelector('.header')
+    const sobreFestival = document.querySelector('.sobre-festival')
+
+    document.addEventListener('scroll', function() {
+        if(sobreFestival.getBoundingClientRect().bottom < 1) {
+            header.classList.add('fijo')
+        } else {
+            header.classList.remove('fijo')
+        }
+    })
 }
 
 function crearGaleria() {
-    const galeria = document.querySelector('.galeria-imagenes');
 
-    for (let i = 1; i <= 12; i++) {
-        const imagen = document.createElement('picture');
-        const sourceAvif = document.createElement('source');
-        sourceAvif.srcset = `build/assets/img/thumb/${i}.avif`;
-        sourceAvif.type = 'image/avif';
-        const sourceWebp = document.createElement('source');
-        sourceWebp.srcset = `build/assets/img/thumb/${i}.webp`;
-        sourceWebp.type = 'image/webp';
-        const sourceimg = document.createElement('img');
-        sourceimg.src = `build/assets/img/thumb/${i}.jpg`;
-        sourceimg.alt = 'Imagen Galeria';
-        imagen.appendChild(sourceAvif);
-        imagen.appendChild(sourceWebp);
-        imagen.appendChild(sourceimg);
+    const CANTIDAD_IMAGENES = 16
+    const galeria = document.querySelector('.galeria-imagenes')
 
-        imagen.dataset.imagenId = i;
-        // Añadir la función de mostrarImagen
-        imagen.onclick = function () {
-            mostrarImagen(i);
-        };
-        galeria.appendChild(imagen);
-    }
-}
+    for(let i = 1; i <= CANTIDAD_IMAGENES; i++) {
+        const imagen = document.createElement('IMG')
+        imagen.src = `src/assets/img/gallery/full/${i}.jpg`
+        imagen.alt = 'Imagen Galería'
 
-function mostrarImagen(id) {
-    // Generar la imagen
-    const imagen = document.createElement('picture');
-    const sourceAvif = document.createElement('source');
-    sourceAvif.srcset = `build/assets/img/grande/${id}.avif`;
-    sourceAvif.type = 'image/avif';
-    const sourceWebp = document.createElement('source');
-    sourceWebp.srcset = `build/assets/img/grande/${id}.webp`;
-    sourceWebp.type = 'image/webp';
-    const sourceimg = document.createElement('img');
-    sourceimg.src = `build/assets/img/grande/${id}.jpg`;
-    sourceimg.alt = 'Imagen Galeria';
-    imagen.appendChild(sourceAvif);
-    imagen.appendChild(sourceWebp);
-    imagen.appendChild(sourceimg);
-
-    const overlay = document.createElement('DIV');
-    overlay.appendChild(imagen);
-    overlay.classList.add('overlay');
-
-    // Cuando se da click, cerrar la imagen
-    overlay.onclick = function () {
-        const body = document.querySelector('body');
-        body.classList.remove('fijar-body');
-        overlay.remove();
-    }
-
-    // Boton para cerrar la imagen
-    const cerrarImagen = document.createElement('P');
-    cerrarImagen.textContent = 'X';
-    cerrarImagen.classList.add('btn-cerrar');
-
-    // Cuando se presiona, se cierra la imagen
-    cerrarImagen.onclick = function () {
-        const body = document.querySelector('body');
-        body.classList.remove('fijar-body');
-        overlay.remove();
-    }
-
-    overlay.appendChild(cerrarImagen)
-
-    // Mostrar en el HTML
-    const body = document.querySelector('body');
-    body.appendChild(overlay);
-    body.classList.add('fijar-body');
-}
-
-function navegacionFija() {
-
-    const barra = document.querySelector('.header');
-
-    // Registrar el Intersection Observer
-    const observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-            barra.classList.remove('fijo');
-        } else {
-            barra.classList.add('fijo');
+        // Event Handler
+        imagen.onclick = function() {
+            mostrarImagen(i)
         }
-    });
+        
+        galeria.appendChild(imagen)
+    }
+}
 
-    // Elemento a observar
-    observer.observe(document.querySelector('.sobre-festival'));
+function mostrarImagen(i) {
+    const imagen = document.createElement('IMG')
+    imagen.src = `src/assets/img/gallery/full/${i}.jpg`
+    imagen.alt = 'Imagen Galería'
+
+    // Generar Modal
+    const modal = document.createElement('DIV')
+    modal.classList.add('overlay')
+    modal.onclick = cerrarModal
+
+    // Botón cerrar modal
+    const cerrarModalBtn = document.createElement('BUTTON')
+    cerrarModalBtn.textContent = 'X'
+    cerrarModalBtn.classList.add('btn-cerrar')
+    cerrarModalBtn.onclick = cerrarModal
+
+    modal.appendChild(imagen)
+    modal.appendChild(cerrarModalBtn)
+
+    // Agregar al HTML
+    const body = document.querySelector('body')
+    body.classList.add('overflow-hidden')
+    body.appendChild(modal)
+
+}
+
+function cerrarModal() {
+
+    const modal = document.querySelector('.overlay')
+    modal.classList.add('fade-out')
+
+    setTimeout(() => {
+        modal?.remove()
+
+        const body = document.querySelector('body')
+        body.classList.remove('overflow-hidden')
+    }, 500);
+}
+
+function resaltarEnlace() {
+    document.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section')
+        const navLinks = document.querySelectorAll('.navegacion-principal a')
+
+        let actual = '';
+        sections.forEach( section => {
+            const sectionTop = section.offsetTop
+            const sectionHeight = section.clientHeight
+            if(window.scrollY >= (sectionTop - sectionHeight / 3 ) ) {
+                actual = section.id
+            }
+        })
+
+        navLinks.forEach(link => {
+            link.classList.remove('active')
+            if(link.getAttribute('href') === '#' + actual) {
+                link.classList.add('active')
+            }
+        })
+    })
 }
 
 function scrollNav() {
-    const enlaces = document.querySelectorAll('.navegacion-principal a');
+    const navLinks = document.querySelectorAll('.navegacion-principal a')
 
-    enlaces.forEach(function (enlace) {
-        enlace.addEventListener('click', function (e) {
-            e.preventDefault();
-            const seccion = document.querySelector(e.target.attributes.href.value);
+    navLinks.forEach( link => {
+        link.addEventListener('click', e => {
+            e.preventDefault()
+            const sectionScroll = e.target.getAttribute('href')
+            const section = document.querySelector(sectionScroll)
 
-            seccion.scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+            section.scrollIntoView({behavior: 'smooth'})
+        })
+    })
 }
