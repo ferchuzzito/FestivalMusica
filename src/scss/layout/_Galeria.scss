@@ -1,52 +1,70 @@
 @use "base/variables" as v;
 @use "sass:math";
-@use 'components/util' as u;
+@use "components/util" as u;
 
-.galeria{
-     padding: v.$Separacion 0;
-     h3{
-          text-align: center;
-     }
-     &-imagenes{
-          padding: 0;
-          list-style-type: none;
-          margin-top: v.$Separacion;
-          @include u.Grid (2, v.$Separacion);
-          @include u.tablet {
-               @include u.Grid (4, math.div(v.$Separacion,2))  
-          }
-          @include u.desktop {
-               @include u.Grid (6, math.div(v.$Separacion,2))  
-          }
-     }
+.galeria {
+  @include u.contenedor;
+  &-imagenes {
+    @include u.Grid(1, 2rem);
+    @include u.telefono {
+      @include u.Grid(2, 2rem);
+    }
+    @include u.tablet {
+      @include u.Grid(3, 2rem);
+    }
+    @include u.desktop {
+      @include u.Grid(4, 2rem);
+    }
+    img {
+      height: 20rem;
+      object-fit: cover;
+    }
+  }
 }
 .overlay {
-     position: fixed;
-     background-color: rgba(0,0,0,.5);
-     width: 100%;
-     height: 100%;
-     top: 0;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(v.$Cnegro, 0.5);
+  display: grid;
+  place-items: center;
+  animation: fadeIn ease-in 0.5s;
+  &.fade-out {
+    animation: fadeOut ease-in 0.5s;
+  }
 
-     display: grid;
-     place-items: center;
-     picture{
-          @include u.desktop{
-              width: min(50%, 90%);
-          }
-      }
- }
- 
- .btn-cerrar {
-     width: 5rem;
-     height: 5rem;
-     background-color: v.$Cblanco;
-     display: grid;
-     place-items: center;
-     font-weight: v.$Fblack;
-     font-size: 3rem;
-     border-radius: 50%;
- 
-     &:hover {
-         cursor: pointer;
-     }
- }
+  img {
+    max-width: 100rem;
+  }
+}
+
+.btn-cerrar {
+  width: 4rem;
+  height: 4rem;
+  background-color: v.$Cblanco;
+  border: none;
+  color: v.$Cnegro;
+  display: grid;
+  place-items: center;
+  font-weight: v.$Fbold;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

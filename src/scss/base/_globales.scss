@@ -1,32 +1,32 @@
-@use 'variables'as v;
+@use 'variables' as v;
 
 /**Globales**/
 html {
      font-size: 62.5%;
      box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
+     scroll-padding-top: 0rem;
+ }
+ *, 
+ *:before,
+ *:after {
      box-sizing: inherit;
-}
+ }
 
 body {
      font-family: v.$FuentePrincipal;
-     font-size: 1.6rem;
+     font-optical-sizing: auto;
+     font-style: normal;
+     color: v.$Cnegro;
+     font-size: 2rem;
 
      &.fijar-body {
           overflow: hidden;
-     }
-
-     &.body-scroll {
-          padding-top: 8.6rem;
      }
 }
 
 p {
      font-size: 2rem;
+     line-height: 1.5;
      color: v.$Cnegro;
 }
 
@@ -40,14 +40,24 @@ a {
      text-decoration: none;
 }
 
-img {
-     max-width: 100%;
-}
-
 @for $i from 1 through 3 {
      h#{$i} {
           font-size: nth(v.$Heading-size, $i);
           font-weight: nth(v.$Heading-weight, $i);
           margin: 0 0 5rem 0;
+
+          @if $i == 3 {
+               text-align: center;
+             }
      }
 }
+
+img {
+     max-width: 100%;
+     width: 100%;
+     height: auto;
+     display: block;
+}
+body > section {
+     padding: 10rem 0
+ }

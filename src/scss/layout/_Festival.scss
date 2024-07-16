@@ -1,19 +1,16 @@
 @use "base/variables" as v;
 @use 'components/util' as u;
 .sobre-festival {
-     padding: v.$Separacion 0;
-
+     @include u.contenedor;
      @include u.tablet {
           @include u.Grid(2, v.$Separacion);
      }
 }
 
 .contenido-festival {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
+     margin-top: v.$Separacion;
      h2 {
-          font-size: 3rem;
+          margin-bottom: 2rem;
      }
 
      .fecha {

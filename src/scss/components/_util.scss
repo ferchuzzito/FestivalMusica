@@ -36,10 +36,14 @@
     align-items: $align;
 }
 
-.bg-verde {
-    background-color: v.$Cverde;
+@mixin resetear-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.bg-amarillo {
-    background-color: v.$Camarillo;
+@mixin contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
 }

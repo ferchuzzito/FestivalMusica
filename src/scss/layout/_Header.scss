@@ -4,22 +4,19 @@
 .header {
      background-color: v.$Cverde;
 
-     h1 {
-          color: v.$Cblanco;
-          margin-bottom: 1rem;
-          @include u.tablet {
-               margin-bottom: 0;
+     @include u.tablet {
+          &.fijo{
+               position: fixed;
+               left: 0;
+               top: 0;
+               width: 100%;
+               box-shadow: .1rem .2rem .3rem rgb(51, 51, 51);
           }
-     }
-     &.fijo{
-          position: fixed;
-          width: 100%;
-          box-shadow: 0 .3rem .4rem rgb(68, 68, 68);
      }
 }
 
 .contenido-header {
-     padding: math.div(v.$Separacion,2) 0;
+     padding: 2rem;
      @include u.tablet {
           display: flex;
           justify-content: space-between;
@@ -27,17 +24,29 @@
      }
 
 }
+h1 {
+     color: v.$Cblanco;
+     text-align: center;
+     @include u.tablet {
+          text-align: left;
+          margin: 0;
+     }
+}
 
 .navegacion-principal {
      display: flex;
-     //gap: 2rem;
-     justify-content: center;
+     gap: 2rem;
+     flex-direction: column;
+     align-items: center;
+     @include u.tablet {
+          flex-direction: row;
+      }
      a {
           color: v.$Cblanco;
-          font-size: 2rem;
-          margin: 0 1rem;
-          &:hover{
-               color: v.$Camarillo;
+          font-size: 2.4rem;
+          &:hover,
+          &.active {
+              color: v.$Camarillo;
           }
      }
 }

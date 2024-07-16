@@ -1,65 +1,76 @@
 @use "base/variables" as v;
 @use "sass:math";
 @use 'components/util' as u;
-.boletos {
-     padding: v.$Separacion 0;
-     h3 {
-         text-align: center;
-         color: v.$Cblanco;
-     }
- 
-     .contenedor-boletos {
-         margin-top: math.div(v.$Separacion, 2);
-         @include u.Grid(2, v.$Separacion);
-     }
- 
-     .plan {
-         p {
-             color: v.$Cblanco;
-             font-size: 3rem;
-             text-align: center;
-             margin-bottom: 2rem;
-         }
-     }
- }
- 
- .pase {
-     width: 100%;
-     border-spacing: 0;
-     thead {
-         background-color: v.$Crosa;
-         th {
-             padding: math.div(v.$Separacion, 4);
-             color: v.$Cblanco;
-             text-transform: uppercase;
-             font-weight: v.$Fdelgada;
-             font-size: 2rem;
-         }
-     }
-     tbody {
-         background-color: v.$Cblanco;
- 
-         td {
-             padding: math.div(v.$Separacion, 4);
-             border-bottom: 1px solid rgb(225, 225, 225);
-         }
- 
-         tr {
-             &:last-of-type {
-                 td {
-                     border:none;
-                 }
-             }
-         }
-     }
-     tfoot {
-         background-color: v.$Cmorado;
- 
-         td {
-             padding: math.div(v.$Separacion, 4);
-             text-align: center;
-             font-size: 3rem;
-             color: v.$Cblanco;
-         }
-     }
- }
+
+.contenedor_boletos {
+    background-color: v.$Cverde;
+    h3 {
+        color: v.$Cblanco;
+    }
+
+    .boletos {
+        @include u.contenedor;
+        @include u.tablet {
+            @include u.Grid(2, v.$Separacion);
+        }
+    }
+}
+
+.pase {
+    transition: transform .3s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &_nombre {
+        font-size: 3.6rem;
+        font-weight: v.$Fblack;
+        text-align: center;
+        color: v.$Cblanco;
+    }
+    &_header,
+    &_footer {
+        padding: .5rem;
+
+        p {
+            text-align: center;
+            color: v.$Cblanco;
+            margin: 0;
+        }
+    }
+    &_header {
+        background-color: v.$Crosa;
+        p {
+            text-transform: uppercase;
+            font-size: 2.2rem;
+            padding: 1rem 0;
+        }
+    }
+    &_body {
+        background-color: v.$Cblanco;
+        ul {
+            @include u.resetear-lista;
+            
+            li {
+                padding: 2rem;
+                border-bottom: 1px solid rgb(225, 225, 225);;
+            }
+        }
+    }
+    &_footer {
+        background-color: v.$Cblanco;
+        padding: 3rem;
+
+        p {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background-color: v.$Cmorado;
+            padding: 1rem 0;
+            border-radius: 1rem;
+            cursor: pointer;
+            &:hover {
+                background-color: darken(v.$Cmorado, 20);
+            }
+        }
+    }
+}
