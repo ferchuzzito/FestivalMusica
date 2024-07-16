@@ -39,7 +39,7 @@ export function css(done) {
       .pipe(sourcemaps.init())
       .pipe(plumber())
       // outputstyle (nested, compact, expanded, compressed)
-      .pipe(sassCompiler({ outputStyle: 'compressed' })/* .on('error', sass.logError) */)
+      .pipe(sassCompiler({ outputStyle: 'compressed' }) .on('error', sassCompiler.logError))
       // autoprefixer
       .pipe(postcss([autoprefixer({
          overrideBrowserslist: ['> .5%, last 10 versions']
