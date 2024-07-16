@@ -2,20 +2,22 @@
 <html lang="es">
 
 <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap"
-          rel="stylesheet">
-     <link rel="stylesheet" href="build/css/FestivalMusica.css">
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet" />
+     <link rel="stylesheet" href="build/css/FestivalMusica.css" />
 
-     <title>Rock y EDM Festival</title>
+     <title>Techno & EDM Festival</title>
 </head>
 
 <body>
      <header class="header">
           <div class="contenedor contenido-header">
-               <h1>Rock & EDM Festival</h1>
+               <h1>Techno & EDM Festival</h1>
                <nav class="navegacion-principal">
                     <a href="#lineup">Line Up</a>
                     <a href="#galeria">Galeria</a>
@@ -26,44 +28,41 @@
      <div class="video">
           <div class="overlay">
                <div class="contenedor contenido-video">
-                    <h2>
-                         Rock & EDM Festival
-                         <span>
-                              Julio 2121, Guadalajara, Mexico
-                         </span>
-                    </h2>
+                    <h2>Techno & EDM Festival</h2>
+                    <p>Julio 2025, Guadalajara, Mexico</p>
                </div>
           </div>
           <video autoplay muted loop>
-               <source src="build/assets/video/concierto.mp4" type="video/mp4">
-               <source src="build/assets/video/concierto.ogg" type="video/ogg">
-               <source src="build/assets/video/concierto.webm" type="video/webm">
+               <source src="build/assets/video/dj.mp4" type="video/mp4" />
+               <source src="build/assets/video/dj.ogg" type="video/ogg" />
+               <source src="build/assets/video/dj.webm" type="video/webm" />
           </video>
      </div>
-     <div class="contenedor sobre-festival">
+     <div class="sobre-festival">
           <div class="imagen">
                <picture>
-                    <source srcset="build/assets/img/imagen_vocalista.avif" type="image/avif">
-                    <source srcset="build/assets/img/imagen_vocalista.webp" type="image/webp">
-                    <img src="build/assets/img/imagen_vocalista.jpg" alt="Imagen Vocalista">
+                    <source srcset="build/assets/img/imagen_vocalista.avif" type="image/avif" />
+                    <source srcset="build/assets/img/imagen_vocalista.webp" type="image/webp" />
+                    <img src="build/assets/img/imagen_vocalista.jpg" alt="Imagen Vocalista" />
                </picture>
           </div>
           <div class="contenido-festival">
-               <h2>Rock & EDM Festival</h2>
+               <h2>Techno & EDM Festival</h2>
                <p class="fecha">Julio 2121, Guadalajara, Mexico</p>
                <p class="texto">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae deleniti molestias explicabo
-                    debitis fuga dolore, illo deserunt, labore quo quae aut quis corrupti doloremque nostrum
-                    reprehenderit voluptatibus sed consectetur at?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+                    deleniti molestias explicabo debitis fuga dolore, illo deserunt,
+                    labore quo quae aut quis corrupti doloremque nostrum reprehenderit
+                    voluptatibus sed consectetur at?
                </p>
           </div>
      </div>
      <section id="lineup" class="lineup">
           <h3>Line Up</h3>
           <p class="dia">Viernes 21</p>
-          <div class="escenarios-contenedor contenedor">
+          <div class="escenarios-contenedor">
                <div class="escenario rock bg-amarillo">
-                    <p class="escenario__nombre">Escenario Rock</p>
+                    <p class="escenario__nombre">Rock</p>
                     <ul class="calendario">
                          <li>24:00 | <span>Metallica</span></li>
                          <li>22:00 | <span>Pearl Jam</span></li>
@@ -74,7 +73,7 @@
                     </ul>
                </div>
                <div class="escenario edm bg-verde">
-                    <p class="escenario__nombre">Escenario Edm</p>
+                    <p class="escenario__nombre">Edm</p>
                     <ul class="calendario">
                          <li>24:00 | <span>Deadmau5</span></li>
                          <li>22:00 | <span>Tiësto</span></li>
@@ -86,9 +85,9 @@
                </div>
           </div>
           <p class="dia">Sábado 22</p>
-          <div class="escenarios-contenedor contenedor">
+          <div class="escenarios-contenedor">
                <div class="escenario rock bg-verde">
-                    <p class="escenario__nombre">Escenario Rock</p>
+                    <p class="escenario__nombre">Rock</p>
                     <ul class="calendario">
                          <li>24:00 | <span>Metallica</span></li>
                          <li>22:00 | <span>Pearl Jam</span></li>
@@ -99,7 +98,7 @@
                     </ul>
                </div>
                <div class="escenario edm bg-amarillo">
-                    <p class="escenario__nombre">Escenario Edm</p>
+                    <p class="escenario__nombre">Edm</p>
                     <ul class="calendario">
                          <li>24:00 | <span>Deadmau5</span></li>
                          <li>22:00 | <span>Tiësto</span></li>
@@ -111,95 +110,52 @@
                </div>
           </div>
      </section>
-     <section id="galeria" class="galeria contenedor">
+     <section id="galeria" class="galeria">
           <h3>Galeria</h3>
-          <ul class="galeria-imagenes">
-
-          </ul>
+          <ul class="galeria-imagenes"></ul>
      </section>
-     <section id="boletos" class="boletos bg-verde">
+     <section id="boletos" class="contenedor_boletos">
           <h3>Boletos</h3>
 
-          <div class="contenedor-boletos contenedor">
-               <div class="basico plan">
-                    <p>Pase 1 Día</p>
-
-                    <table class="pase">
-                         <thead>
-                              <tr>
-                                   <th>
-                                        Incluye
-                                   </th>
-                              </tr>
-                         </thead>
-
-                         <tbody>
-                              <tr>
-                                   <td>
-                                        Acceso a todos los Escenarios
-                                   </td>
-                              </tr>
-                              <tr>
-                                   <td>
-                                        Comida y Bebida
-                                   </td>
-                              </tr>
-                         </tbody>
-
-                         <tfoot>
-                              <tr>
-                                   <td>$100</td>
-                              </tr>
-                         </tfoot>
-                    </table>
+          <div class="boletos">
+               <div class="pase">
+                    <p class="pase_nombre">Pase 1 Día</p>
+                    <header class="pase_header">
+                         <p>Incluye</p>
+                    </header>
+                    <div class="pase_body">
+                         <ul>
+                              <li>Acceso a ambos escenarios</li>
+                              <li>Bebida Ilimitada</li>
+                              <li>Camisa / Pulsera del Evento</li>
+                         </ul>
+                    </div>
+                    <footer class="pase_footer">
+                         <p>$100</p>
+                    </footer>
                </div>
-               <div class="premium plan">
-                    <p>Pase 2 Días</p>
-
-                    <table class="pase">
-                         <thead>
-                              <tr>
-                                   <th>
-                                        Incluye
-                                   </th>
-                              </tr>
-                         </thead>
-
-                         <tbody>
-                              <tr>
-                                   <td>
-                                        Acceso a todos los Escenarios
-                                   </td>
-                              </tr>
-                              <tr>
-                                   <td>
-                                        Comida y Bebida
-                                   </td>
-                              </tr>
-                              <tr>
-                                   <td>
-                                        Camisa del evento
-                                   </td>
-                              </tr>
-                              <tr>
-                                   <td>
-                                        Acceso VIP
-                                   </td>
-                              </tr>
-                         </tbody>
-
-                         <tfoot>
-                              <tr>
-                                   <td>$180</td>
-                              </tr>
-                         </tfoot>
-                    </table>
-               </div>
+               <div class="pase">
+                    <p class="pase_nombre">Pase 2 Días</p>
+                    <header class="pase_header">
+                        <p>Incluye</p>
+                    </header>
+                    <div class="pase_body">
+                        <ul>
+                            <li>Acceso a ambos escenarios</li>
+                            <li>Bebida Ilimitada</li>
+                            <li>Camisa / Pulsera del Evento</li>
+                            <li>Acceso VIP</li>
+                        </ul>
+                    </div>
+                    <footer class="pase_footer">
+                        <p>$180</p>
+                    </footer>
+                </div>
           </div>
      </section>
 
      <footer class="footer">
-          <p>Rock & EDM Festival. Todos Los Derechos Reservados</p>
+          <p>Techno & EDM Festival. Todos Los Derechos Reservados</p>
      </footer>
      <script src="build/js/app.js"></script>
 </body>
