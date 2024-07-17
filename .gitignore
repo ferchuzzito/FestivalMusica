@@ -1,5 +1,5 @@
 node_modules
-build/assets/img
+build/img
 build/css
 build/js
 package-lock.json

@@ -10,8 +10,7 @@
     "build:cleanCSS": "gulp cleanCSS",
     "build:js": "gulp js",
     "build:images": "gulp images",
-    "build:webp": "gulp webp",
-    "build:avif": "gulp avif"
+    "build:crop": "gulp crop"
   },
   "keywords": [
     "HTML",
@@ -31,7 +30,9 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",
-    "sass": "^1.77.7"
+    "sass": "^1.77.7",
+    "glob": "^11.0.0",
+    "sharp": "^0.33.4"
   },
   "dependencies": {
   }
