@@ -12,9 +12,9 @@ class Galeria {
     crearPictureElement(path, index) {
         const imagen = document.createElement('PICTURE');
         imagen.innerHTML = `
-            <source srcset="build/img/gallery/${path}/${index}.avif" type="image/avif">
-            <source srcset="build/img/gallery/${path}/${index}.webp" type="image/webp">
-            <img loading="lazy" width="200" height="300" src="build/img/gallery/${path}/${index}.jpg" alt="Imagen galeria ${index}">
+            <source srcset="build/img/gallery/${path}/edm-${index}.avif" type="image/avif">
+            <source srcset="build/img/gallery/${path}/edm-${index}.webp" type="image/webp">
+            <img loading="lazy" width="200" height="300" src="build/img/gallery/edm-${path}/${index}.jpg" alt="Imagen galeria ${index}">
         `;
         return imagen;
     }
@@ -34,7 +34,7 @@ class Galeria {
 
     // Método para crear y mostrar el modal
     mostrarImagen(i) {
-        const imagenCompleta = this.crearPictureElement('full', i);
+        const imagenCompleta = this.crearPictureElement('edm', i);
         
         // 1. Generar Modal
         const modal = document.createElement('DIV');
