@@ -74,7 +74,7 @@ export function js(done) {
 };
 
 export async function crop(done) {
-   const inputFolder = 'src/assets/img/gallery/full'
+   const inputFolder = 'src/assets/img/gallery/edm'
    const outputFolder = 'src/assets/img/gallery/thumb';
    const width = 250;
    const height = 180;
